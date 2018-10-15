@@ -1,0 +1,33 @@
+<hr>
+<button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#addModal">Add new</button>
+<h2>Countries Table ({{lenghtt}} including)</h2>
+<hr>
+<div class="input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+    </div>
+    <input type="text" class="form-control" placeholder="Search..." ng-model="searchInput">
+</div>
+<table class="table table-striped table-hover">
+
+    <thead>
+    <tr>
+        <td ng-click="sortFunc('id')"><strong>No</strong></td>
+        <td ng-click="sortFunc('name')"><strong>Country</strong></td>
+        <td ng-click="sortFunc('continent')"><strong>Continent</strong></td>
+        <td><strong>Edit</strong></td>
+        <td><strong>Delete</strong></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="country in countries | orderBy:sortColumn:reverse | filter:searchInput">
+        <td>{{country.id}}</td>
+        <td>{{country.name}}</td>
+        <td>{{country.continent}}</td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" ng-click="getEditInfo(country.id)"><i class="fa fa-edit"></i></button></td>
+        <td><button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteAbc" ng-click="getDeleteInfo(country)"><i class="fa fa-trash"></i></button></td>
+    </tr>
+    </tbody>
+</table>
+
+<div ng-include="'app/templates/modals.html'"></div>
